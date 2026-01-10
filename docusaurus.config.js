@@ -11,13 +11,13 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-username.github.io',
+  url: 'https://ai-book-five-mauve.vercel.app',
   // Set the /<baseUrl>/ pathname under which your site is served
-  baseUrl: '/ai-book/',
+  baseUrl: '/',
 
   // GitHub pages deployment config.
-  organizationName: 'your-username',
-  projectName: 'ai-book',
+  organizationName: 'aurangzaibmughal',
+  projectName: 'Ai--book-',
 
   onBrokenLinks: 'throw',
 
@@ -46,7 +46,7 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/your-username/ai-book/edit/main/',
+          editUrl: 'https://github.com/aurangzaibmughal/Ai--book-/edit/main/',
         },
         blog: false,
         theme: {
@@ -119,7 +119,7 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://github.com/your-username/ai-book',
+            href: 'https://github.com/aurangzaibmughal/Ai--book-',
             label: 'GitHub',
             position: 'right',
           },
@@ -142,7 +142,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/your-username/ai-book',
+                href: 'https://github.com/aurangzaibmughal/Ai--book-',
               },
             ],
           },
