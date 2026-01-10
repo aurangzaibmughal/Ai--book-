@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(sp.constitution)",
+      "Bash(\".specify/scripts/bash/create-phr.sh\" --title \"Create AI Textbook Platform Constitution\" --stage constitution --json)",
+      "Bash(mkdir:*)",
+      "Bash(git fetch --all --prune)",
+      "Bash(powershell.exe:*)",
+      "Bash(test:*)",
+      "Bash(npx kill-port:*)",
+      "Bash(npm start)",
+      "Bash(dir:*)",
+      "Bash(cat:*)",
+      "Bash(npm run write-translations:*)",
+      "Bash(npm run clear)",
+      "Bash(yarn install)",
+      "Bash(npx docusaurus start)",
+      "Bash(netstat:*)",
+      "Bash(findstr :3000)",
+      "Bash(taskkill:*)",
+      "Bash(npx docusaurus build)",
+      "Bash(echo:*)",
+      "Bash(npx docusaurus clear:*)",
+      "Bash(timeout 10 tail -f \"C:\\\\Users\\\\HAJILA~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-HAJI-LAPTOP-KARACHI-Desktop-ai-book\\\\tasks\\\\bca01ae.output\")",
+      "Bash(npm run build)",
+      "Bash(npm run serve)",
+      "Bash(timeout:*)"
+    ]
+  }
+}

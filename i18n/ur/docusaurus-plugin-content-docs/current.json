@@ -1,0 +1,18 @@
+{
+  "version.label": {
+    "message": "اگلا",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Chapter 1: Introduction": {
+    "message": "باب 1: تعارف",
+    "description": "The label for category 'Chapter 1: Introduction' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.link.Introduction": {
+    "message": "تعارف",
+    "description": "The label for link Introduction in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.link.GitHub Pages پر تعیناتی کی گائیڈ": {
+    "message": "تعیناتی کی گائیڈ",
+    "description": "The label for link deployment-guide in sidebar tutorialSidebar"
+  }
+}

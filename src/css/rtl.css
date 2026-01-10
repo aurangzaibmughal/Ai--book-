@@ -1,0 +1,194 @@
+/**
+ * RTL (Right-to-Left) CSS for Urdu language support
+ *
+ * This file contains styles specific to RTL languages like Urdu
+ */
+
+/* RTL direction for Urdu locale */
+html[lang="ur"] {
+  direction: rtl;
+}
+
+/* Flip navigation elements */
+html[lang="ur"] .navbar__items {
+  flex-direction: row-reverse;
+}
+
+html[lang="ur"] .navbar__item {
+  margin-right: 0;
+  margin-left: var(--ifm-navbar-item-padding-horizontal);
+}
+
+/* Flip sidebar */
+html[lang="ur"] .theme-doc-sidebar-container {
+  border-right: none;
+  border-left: 1px solid var(--ifm-toc-border-color);
+}
+
+html[lang="ur"] aside[class*="docSidebarContainer"] {
+  border-right: none;
+  border-left: 1px solid var(--ifm-toc-border-color);
+}
+
+/* Flip table of contents */
+html[lang="ur"] .table-of-contents {
+  border-left: none;
+  border-right: 1px solid var(--ifm-toc-border-color);
+}
+
+/* Flip breadcrumbs */
+html[lang="ur"] .breadcrumbs__item:not(:last-child):after {
+  content: "\\";
+  margin: 0 0.5rem;
+  transform: scaleX(-1);
+}
+
+/* Flip pagination */
+html[lang="ur"] .pagination-nav__link--prev {
+  text-align: right;
+}
+
+html[lang="ur"] .pagination-nav__link--next {
+  text-align: left;
+}
+
+/* Flip dropdown menus */
+html[lang="ur"] .dropdown__menu {
+  left: auto;
+  right: 0;
+}
+
+/* Flip code blocks */
+html[lang="ur"] .prism-code {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Keep code blocks LTR but align container RTL */
+html[lang="ur"] div[class*="codeBlockContainer"] {
+  direction: rtl;
+}
+
+html[lang="ur"] div[class*="codeBlockContent"] {
+  direction: ltr;
+}
+
+/* Flip search */
+html[lang="ur"] .navbar__search-input {
+  padding-right: 2rem;
+  padding-left: 0.5rem;
+}
+
+/* Flip icons */
+html[lang="ur"] .menu__link--sublist-caret:after {
+  transform: rotate(180deg);
+}
+
+/* Flip admonitions */
+html[lang="ur"] .admonition {
+  text-align: right;
+}
+
+/* Flip lists */
+html[lang="ur"] ul,
+html[lang="ur"] ol {
+  padding-right: 1rem;
+  padding-left: 0;
+}
+
+/* Flip blockquotes */
+html[lang="ur"] blockquote {
+  border-left: none;
+  border-right: 4px solid var(--ifm-color-primary);
+  padding-right: 1rem;
+  padding-left: 0;
+}
+
+/* Urdu typography improvements */
+html[lang="ur"] {
+  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'Alvi Nastaleeq', Arial, sans-serif;
+  line-height: 2;
+}
+
+html[lang="ur"] h1,
+html[lang="ur"] h2,
+html[lang="ur"] h3,
+html[lang="ur"] h4,
+html[lang="ur"] h5,
+html[lang="ur"] h6 {
+  font-weight: 700;
+  line-height: 1.8;
+}
+
+html[lang="ur"] p {
+  line-height: 2.2;
+}
+
+/* Improve readability for Urdu text */
+html[lang="ur"] .markdown {
+  font-size: 1.1rem;
+}
+
+/* Fix button alignment */
+html[lang="ur"] .button {
+  text-align: center;
+}
+
+/* Fix hero section */
+html[lang="ur"] .hero__title,
+html[lang="ur"] .hero__subtitle {
+  text-align: center;
+}
+
+/* Fix footer */
+html[lang="ur"] .footer {
+  text-align: right;
+}
+
+html[lang="ur"] .footer__links {
+  text-align: right;
+}
+
+/* Fix mobile menu */
+html[lang="ur"] .menu__list-item-collapsible {
+  text-align: right;
+}
+
+/* Ensure Mermaid diagrams stay LTR */
+html[lang="ur"] .mermaid {
+  direction: ltr;
+  text-align: center;
+}
+
+/* Fix tabs */
+html[lang="ur"] .tabs {
+  direction: rtl;
+}
+
+html[lang="ur"] .tabs__item {
+  text-align: center;
+}
+
+/* Fix cards */
+html[lang="ur"] .card {
+  text-align: right;
+}
+
+/* Fix badges */
+html[lang="ur"] .badge {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+/* Responsive adjustments for RTL */
+@media (max-width: 996px) {
+  html[lang="ur"] .navbar-sidebar {
+    right: auto;
+    left: 0;
+  }
+
+  html[lang="ur"] .navbar-sidebar__backdrop {
+    right: auto;
+    left: 0;
+  }
+}
