@@ -230,4 +230,4 @@ Want to contribute to this textbook?
 
 ---
 
-**Ready to Start?** Head back to the [Overview](./index.md) or begin with [Core Concepts](./concepts.md)!
+**Ready to Start?** Navigate to the chapters using the sidebar or continue learning!
