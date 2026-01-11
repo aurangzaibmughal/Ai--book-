@@ -1,0 +1,282 @@
+openapi: 3.0.3
+info:
+  title: Robotics Textbook - Chatbot API
+  description: RAG-powered AI assistant for Physical AI & Humanoid Robotics textbook
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: support@example.com
+
+servers:
+  - url: https://api.robotics-textbook.com/v1
+    description: Production server
+  - url: http://localhost:8000/v1
+    description: Local development server
+
+tags:
+  - name: chat
+    description: AI assistant chat operations
+  - name: context
+    description: Chapter context management
+
+paths:
+  /chat:
+    post:
+      tags:
+        - chat
+      summary: Send message to AI assistant
+      description: Send a user message and receive AI-generated response grounded in textbook content
+      operationId: sendMessage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - message
+              properties:
+                message:
+                  type: string
+                  description: User's question or message
+                  example: "What is the difference between ROS 1 and ROS 2?"
+                conversation_id:
+                  type: string
+                  format: uuid
+                  description: Existing conversation ID (optional, creates new if not provided)
+                  example: "550e8400-e29b-41d4-a716-446655440000"
+                chapter_context:
+                  type: string
+                  description: Current chapter ID for context-aware responses
+                  example: "chapter-02"
+                selected_text:
+                  type: string
+                  description: User-selected text from chapter for context-specific queries
+                  example: "ROS 2 uses DDS for communication"
+                user_id:
+                  type: string
+                  format: uuid
+                  description: User ID for conversation history (optional for anonymous)
+                  example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  conversation_id:
+                    type: string
+                    format: uuid
+                    example: "550e8400-e29b-41d4-a716-446655440000"
+                  message_id:
+                    type: string
+                    format: uuid
+                    example: "660e8400-e29b-41d4-a716-446655440001"
+                  response:
+                    type: string
+                    example: "ROS 2 differs from ROS 1 in several key ways: it uses DDS (Data Distribution Service) for communication instead of a custom protocol, supports real-time systems, has improved security, and works on multiple platforms including Windows. See Chapter 2, Section 'ROS 2 Architecture' for more details."
+                  sources:
+                    type: array
+                    description: Textbook sections used to ground the response
+                    items:
+                      type: object
+                      properties:
+                        chapter_id:
+                          type: string
+                          example: "chapter-02"
+                        section_name:
+                          type: string
+                          example: "concepts"
+                        relevance_score:
+                          type: number
+                          format: float
+                          example: 0.92
+                  response_time_ms:
+                    type: integer
+                    description: Time taken to generate response
+                    example: 2450
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: "2026-01-11T10:05:00Z"
+        '400':
+          description: Bad request (invalid input)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /chat/history:
+    get:
+      tags:
+        - chat
+      summary: Get conversation history
+      description: Retrieve message history for a conversation
+      operationId: getConversationHistory
+      parameters:
+        - name: conversation_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Conversation ID
+          example: "550e8400-e29b-41d4-a716-446655440000"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 50
+            minimum: 1
+            maximum: 100
+          description: Maximum number of messages to return
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+          description: Number of messages to skip (for pagination)
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  conversation_id:
+                    type: string
+                    format: uuid
+                    example: "550e8400-e29b-41d4-a716-446655440000"
+                  messages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        message_id:
+                          type: string
+                          format: uuid
+                          example: "660e8400-e29b-41d4-a716-446655440001"
+                        role:
+                          type: string
+                          enum: [user, assistant, system]
+                          example: "user"
+                        content:
+                          type: string
+                          example: "What is the difference between ROS 1 and ROS 2?"
+                        timestamp:
+                          type: string
+                          format: date-time
+                          example: "2026-01-11T10:05:00Z"
+                  total_messages:
+                    type: integer
+                    example: 12
+                  has_more:
+                    type: boolean
+                    example: false
+        '404':
+          description: Conversation not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /chat/context:
+    post:
+      tags:
+        - context
+      summary: Set chapter context
+      description: Update the chapter context for a conversation to provide more relevant responses
+      operationId: setChapterContext
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - conversation_id
+                - chapter_id
+              properties:
+                conversation_id:
+                  type: string
+                  format: uuid
+                  example: "550e8400-e29b-41d4-a716-446655440000"
+                chapter_id:
+                  type: string
+                  example: "chapter-03"
+      responses:
+        '200':
+          description: Context updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  conversation_id:
+                    type: string
+                    format: uuid
+                    example: "550e8400-e29b-41d4-a716-446655440000"
+                  chapter_context:
+                    type: string
+                    example: "chapter-03"
+                  updated_at:
+                    type: string
+                    format: date-time
+                    example: "2026-01-11T10:10:00Z"
+        '404':
+          description: Conversation or chapter not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    Error:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+          example: "bad_request"
+        message:
+          type: string
+          example: "Invalid conversation_id format"
+        details:
+          type: object
+          description: Additional error details
+        timestamp:
+          type: string
+          format: date-time
+          example: "2026-01-11T10:05:00Z"
+
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication (optional for public access)
+
+security:
+  - ApiKeyAuth: []
+  - {}  # Allow unauthenticated access

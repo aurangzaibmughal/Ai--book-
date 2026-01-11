@@ -24,7 +24,22 @@
       "Bash(timeout 10 tail -f \"C:\\\\Users\\\\HAJILA~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-HAJI-LAPTOP-KARACHI-Desktop-ai-book\\\\tasks\\\\bca01ae.output\")",
       "Bash(npm run build)",
       "Bash(npm run serve)",
-      "Bash(timeout:*)"
+      "Bash(timeout:*)",
+      "Bash(vercel --yes)",
+      "Bash(git commit:*)",
+      "Bash(vercel --prod)",
+      "Bash(vercel env ls:*)",
+      "Bash(git add history/prompts/general/002-complete-vercel-deployment-configuration.general.prompt.md)",
+      "Bash(git remote set-url:*)",
+      "Bash(vercel ls:*)",
+      "Bash(if [ -d \"specs\" ])",
+      "Bash(then ls -d specs/[0-9]*-robotics-textbook)",
+      "Bash(else echo \"No specs directory exists\")",
+      "Bash(fi)",
+      "Skill(sp.tasks)",
+      "Bash(powershell:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(git add:*)"
     ]
   }
 }

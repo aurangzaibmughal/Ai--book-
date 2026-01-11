@@ -1,0 +1,436 @@
+openapi: 3.0.3
+info:
+  title: Robotics Textbook - Progress API
+  description: User progress tracking and quiz management for Physical AI textbook
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: support@example.com
+
+servers:
+  - url: https://api.robotics-textbook.com/v1
+    description: Production server
+  - url: http://localhost:8000/v1
+    description: Local development server
+
+tags:
+  - name: progress
+    description: Chapter progress tracking
+  - name: quiz
+    description: Quiz submission and scoring
+  - name: stats
+    description: Learning statistics
+
+paths:
+  /progress:
+    get:
+      tags:
+        - progress
+      summary: Get user progress summary
+      description: Retrieve progress for all chapters for a user
+      operationId: getUserProgress
+      parameters:
+        - name: user_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: User ID
+          example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: string
+                    format: uuid
+                    example: "123e4567-e89b-12d3-a456-426614174000"
+                  chapters:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        chapter_id:
+                          type: string
+                          example: "chapter-01"
+                        chapter_title:
+                          type: string
+                          example: "Introduction to Physical AI"
+                        status:
+                          type: string
+                          enum: [not-started, in-progress, completed]
+                          example: "completed"
+                        time_spent_minutes:
+                          type: integer
+                          example: 95
+                        started_at:
+                          type: string
+                          format: date-time
+                          example: "2026-01-11T10:00:00Z"
+                        completed_at:
+                          type: string
+                          format: date-time
+                          nullable: true
+                          example: "2026-01-11T11:35:00Z"
+                        quiz_score:
+                          type: integer
+                          nullable: true
+                          description: Latest quiz score (0-100)
+                          example: 85
+                  total_chapters:
+                    type: integer
+                    example: 13
+                  completed_chapters:
+                    type: integer
+                    example: 3
+                  completion_percentage:
+                    type: number
+                    format: float
+                    example: 23.08
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /progress/chapter:
+    post:
+      tags:
+        - progress
+      summary: Update chapter progress
+      description: Mark a chapter as started, in-progress, or completed
+      operationId: updateChapterProgress
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - user_id
+                - chapter_id
+                - status
+              properties:
+                user_id:
+                  type: string
+                  format: uuid
+                  example: "123e4567-e89b-12d3-a456-426614174000"
+                chapter_id:
+                  type: string
+                  example: "chapter-02"
+                status:
+                  type: string
+                  enum: [not-started, in-progress, completed]
+                  example: "in-progress"
+                time_spent_minutes:
+                  type: integer
+                  description: Additional time spent (added to existing)
+                  example: 30
+      responses:
+        '200':
+          description: Progress updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  progress_id:
+                    type: string
+                    format: uuid
+                    example: "789e4567-e89b-12d3-a456-426614174000"
+                  user_id:
+                    type: string
+                    format: uuid
+                    example: "123e4567-e89b-12d3-a456-426614174000"
+                  chapter_id:
+                    type: string
+                    example: "chapter-02"
+                  status:
+                    type: string
+                    example: "in-progress"
+                  time_spent_minutes:
+                    type: integer
+                    example: 30
+                  updated_at:
+                    type: string
+                    format: date-time
+                    example: "2026-01-11T12:00:00Z"
+        '400':
+          description: Bad request (invalid input)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /quiz/submit:
+    post:
+      tags:
+        - quiz
+      summary: Submit quiz answers
+      description: Submit answers for a chapter quiz and receive score
+      operationId: submitQuiz
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - user_id
+                - quiz_id
+                - answers
+              properties:
+                user_id:
+                  type: string
+                  format: uuid
+                  example: "123e4567-e89b-12d3-a456-426614174000"
+                quiz_id:
+                  type: string
+                  example: "quiz-chapter-01"
+                answers:
+                  type: object
+                  description: Map of question IDs to selected answer indices
+                  example:
+                    q1: 1
+                    q2: 0
+                    q3: 2
+                    q4: 1
+                    q5: 3
+      responses:
+        '200':
+          description: Quiz graded successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  attempt_id:
+                    type: string
+                    format: uuid
+                    example: "456e4567-e89b-12d3-a456-426614174000"
+                  quiz_id:
+                    type: string
+                    example: "quiz-chapter-01"
+                  score:
+                    type: integer
+                    description: Score out of 100
+                    example: 85
+                  total_questions:
+                    type: integer
+                    example: 7
+                  correct_answers:
+                    type: integer
+                    example: 6
+                  passed:
+                    type: boolean
+                    description: Whether score meets passing threshold (70%)
+                    example: true
+                  results:
+                    type: array
+                    description: Detailed results for each question
+                    items:
+                      type: object
+                      properties:
+                        question_id:
+                          type: string
+                          example: "q1"
+                        user_answer:
+                          type: integer
+                          example: 1
+                        correct_answer:
+                          type: integer
+                          example: 1
+                        is_correct:
+                          type: boolean
+                          example: true
+                        explanation:
+                          type: string
+                          example: "Physical AI enables robots to interact with and learn from the physical world."
+                  submitted_at:
+                    type: string
+                    format: date-time
+                    example: "2026-01-11T11:30:00Z"
+        '400':
+          description: Bad request (invalid answers)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Quiz not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /quiz/attempts:
+    get:
+      tags:
+        - quiz
+      summary: Get quiz attempts
+      description: Retrieve all quiz attempts for a user
+      operationId: getQuizAttempts
+      parameters:
+        - name: user_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: User ID
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        - name: quiz_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by specific quiz
+          example: "quiz-chapter-01"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: string
+                    format: uuid
+                    example: "123e4567-e89b-12d3-a456-426614174000"
+                  attempts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        attempt_id:
+                          type: string
+                          format: uuid
+                          example: "456e4567-e89b-12d3-a456-426614174000"
+                        quiz_id:
+                          type: string
+                          example: "quiz-chapter-01"
+                        score:
+                          type: integer
+                          example: 85
+                        passed:
+                          type: boolean
+                          example: true
+                        submitted_at:
+                          type: string
+                          format: date-time
+                          example: "2026-01-11T11:30:00Z"
+                  total_attempts:
+                    type: integer
+                    example: 3
+
+  /stats:
+    get:
+      tags:
+        - stats
+      summary: Get learning statistics
+      description: Retrieve comprehensive learning statistics for a user
+      operationId: getLearningStats
+      parameters:
+        - name: user_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: User ID
+          example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: string
+                    format: uuid
+                    example: "123e4567-e89b-12d3-a456-426614174000"
+                  total_time_minutes:
+                    type: integer
+                    description: Total time spent across all chapters
+                    example: 450
+                  chapters_completed:
+                    type: integer
+                    example: 3
+                  chapters_in_progress:
+                    type: integer
+                    example: 2
+                  average_quiz_score:
+                    type: number
+                    format: float
+                    example: 82.5
+                  quizzes_passed:
+                    type: integer
+                    example: 3
+                  quizzes_failed:
+                    type: integer
+                    example: 0
+                  current_streak_days:
+                    type: integer
+                    description: Consecutive days with activity
+                    example: 5
+                  last_active:
+                    type: string
+                    format: date-time
+                    example: "2026-01-11T12:00:00Z"
+                  recommendations:
+                    type: array
+                    description: Suggested next chapters based on progress
+                    items:
+                      type: object
+                      properties:
+                        chapter_id:
+                          type: string
+                          example: "chapter-04"
+                        chapter_title:
+                          type: string
+                          example: "URDF & Robot Modeling"
+                        reason:
+                          type: string
+                          example: "Next in sequence after completed chapters"
+
+components:
+  schemas:
+    Error:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+          example: "not_found"
+        message:
+          type: string
+          example: "User not found"
+        details:
+          type: object
+          description: Additional error details
+        timestamp:
+          type: string
+          format: date-time
+          example: "2026-01-11T10:05:00Z"
+
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication (optional for public access)
+
+security:
+  - ApiKeyAuth: []
+  - {}  # Allow unauthenticated access
