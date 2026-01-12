@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- AI Textbook Platform Logo -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2e8555;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1877f2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Book shape -->
+  <rect x="40" y="30" width="120" height="140" rx="5" fill="url(#gradient)" />
+  <rect x="45" y="35" width="110" height="130" rx="3" fill="#ffffff" opacity="0.9" />
+
+  <!-- Book spine -->
+  <rect x="40" y="30" width="15" height="140" rx="5" fill="#1b5e3f" />
+
+  <!-- AI Circuit pattern -->
+  <circle cx="100" cy="80" r="8" fill="#2e8555" />
+  <circle cx="80" cy="100" r="6" fill="#1877f2" />
+  <circle cx="120" cy="100" r="6" fill="#1877f2" />
+  <circle cx="100" cy="120" r="6" fill="#1877f2" />
+
+  <!-- Connecting lines -->
+  <line x1="100" y1="88" x2="100" y2="114" stroke="#2e8555" stroke-width="2" />
+  <line x1="92" y1="85" x2="84" y2="95" stroke="#2e8555" stroke-width="2" />
+  <line x1="108" y1="85" x2="116" y2="95" stroke="#2e8555" stroke-width="2" />
+
+  <!-- Text "AI" -->
+  <text x="100" y="155" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#2e8555" text-anchor="middle">AI</text>
+</svg>
