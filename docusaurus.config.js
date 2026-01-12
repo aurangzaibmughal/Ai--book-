@@ -11,9 +11,9 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://ai-book-five-mauve.vercel.app',
+  url: 'https://aurangzaibmughal.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
-  baseUrl: '/',
+  baseUrl: '/Ai--book-/',
 
   // GitHub pages deployment config.
   organizationName: 'aurangzaibmughal',
