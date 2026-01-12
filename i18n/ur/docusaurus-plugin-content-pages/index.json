@@ -1,0 +1,35 @@
+{
+  "homepage.hero.title": {
+    "message": "فزیکل AI اور ہیومنائیڈ روبوٹکس ٹیکسٹ بک"
+  },
+  "homepage.hero.tagline": {
+    "message": "انٹرایکٹو ٹیوٹوریلز کے ساتھ فزیکل AI اور ہیومنائیڈ روبوٹکس میں مہارت حاصل کریں"
+  },
+  "homepage.hero.button": {
+    "message": "سیکھنا شروع کریں →"
+  },
+  "homepage.features.interactive.title": {
+    "message": "انٹرایکٹو سیکھنا"
+  },
+  "homepage.features.interactive.description": {
+    "message": "فزیکل AI اور ہیومنائیڈ روبوٹکس کے تصورات میں مہارت حاصل کرنے کے لیے ہینڈز آن لیبز اور مشقیں۔"
+  },
+  "homepage.features.comprehensive.title": {
+    "message": "جامع مواد"
+  },
+  "homepage.features.comprehensive.description": {
+    "message": "تفصیلی ٹیوٹوریلز کے ساتھ روبوٹ مینیپولیشن، لوکوموشن، پرسیپشن، اور کنٹرول سیکھیں۔"
+  },
+  "homepage.features.multilingual.title": {
+    "message": "کثیر لسانی معاونت"
+  },
+  "homepage.features.multilingual.description": {
+    "message": "وسیع تر رسائی کے لیے انگریزی اور اردو میں دستیاب۔"
+  },
+  "homepage.layout.title": {
+    "message": "فزیکل AI اور ہیومنائیڈ روبوٹکس ٹیکسٹ بک میں خوش آمدید"
+  },
+  "homepage.layout.description": {
+    "message": "انٹرایکٹو ٹیوٹوریلز اور ہینڈز آن لیبز کے ساتھ فزیکل AI اور ہیومنائیڈ روبوٹکس سیکھیں"
+  }
+}
