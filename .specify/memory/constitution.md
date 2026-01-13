@@ -1,178 +1,206 @@
 <!--
 Sync Impact Report:
-- Version change: [INITIAL] → 1.0.0
-- New constitution created for Physical AI & Humanoid Robotics Textbook
-- Principles established: 7 core principles
-- Sections added: Core Principles, Content Standards, Development Workflow, Governance
-- Templates status:
-  ✅ spec-template.md - aligned with user story prioritization
-  ✅ plan-template.md - aligned with technical context requirements
-  ✅ tasks-template.md - aligned with phase-based implementation
-  ⚠ README.md - may need minor updates to reference constitution
-- Follow-up TODOs: None
+- Version change: 1.0.0 → 2.0.0
+- MAJOR version bump: Complete paradigm shift from robotics textbook to SpecKitPlus documentation methodology
+- Modified principles: All 7 principles replaced with 9 new SpecKitPlus principles
+- Removed sections: Content Standards (robotics-specific), Hardware Guidance, Quiz & Exercise Quality
+- Added sections: Workflow Enforcement, Validation Requirements
+- Templates requiring updates:
+  ✅ spec-template.md - must align with "SPEC IS LAW" principle
+  ✅ plan-template.md - must align with "STRUCTURE FIRST, CONTENT SECOND"
+  ✅ tasks-template.md - must align with "MODULE-BASED THINKING"
+  ⚠ README.md - needs update to reference SpecKitPlus methodology
+  ⚠ CLAUDE.md - already references SpecKitPlus, verify alignment
+- Follow-up TODOs:
+  - Verify all chapter templates comply with Docusaurus standards
+  - Audit existing content for spec compliance
+  - Update developer onboarding docs
 -->
 
-# Physical AI & Humanoid Robotics Textbook Constitution
+# AI-Driven Documentation Engineering Constitution
+
+## Project Identity
+
+**Project Name**: Physical AI & Humanoid Robotics Textbook
+**Methodology**: Specification-Driven Development (SpecKitPlus)
+**Primary Role**: AI-driven documentation engineer
 
 ## Core Principles
 
-### I. Technical Accuracy & Educational Rigor
+### I. SPEC IS LAW
 
-All content MUST be technically accurate and pedagogically sound:
-- Code examples MUST be production-ready, tested, and compatible with Ubuntu 22.04 LTS
-- ROS 2 (Humble/Iron) code MUST follow official best practices and conventions
-- Hardware specifications MUST clearly distinguish minimum, recommended, and premium tiers
-- Theoretical concepts MUST be supported by diagrams (Mermaid), practical examples, and hands-on labs
-- All claims about robotics systems, AI models, or simulation platforms MUST be verifiable
+The provided specification is treated as a constitution:
+- Do NOT invent structure, topics, or formats outside the spec
+- If something is missing, infer minimally and conservatively
+- Deviations from spec MUST be explicitly justified and approved
+- Same input spec MUST produce same structure every time
 
-**Rationale**: Students rely on this textbook for career preparation. Inaccurate or outdated information damages learning outcomes and professional readiness.
+**Rationale**: Deterministic, predictable output is essential for maintaining consistency across large documentation projects. Creative deviation introduces technical debt and maintenance burden.
 
-### II. Structured Learning Progression
+### II. STRUCTURE FIRST, CONTENT SECOND
 
-Every chapter MUST follow the mandatory template structure:
-- Overview
-- Learning Objectives (4-5 measurable points)
-- Prerequisites
-- Estimated Time (Reading/Lab/Exercises)
-- Core Concepts (theory + diagrams)
-- Hands-On Lab (step-by-step code)
-- Code Examples (production-ready)
-- Exercises (practice problems)
-- Quiz (5-10 questions)
-- FAQs
-- Hardware Requirements
-- Resources & Further Reading
+Always validate structure before writing content:
+- Output MUST strictly follow the defined Markdown template
+- Section order, headings, callouts, tables, and blocks MUST match specification
+- Structural validation is a blocking requirement before content generation
+- Template compliance is non-negotiable
 
-**Rationale**: Consistent structure enables self-paced learning, ensures comprehensive coverage, and supports the RAG chatbot's ability to provide contextually relevant answers.
+**Rationale**: Structural consistency enables automated tooling, ensures navigability, and supports the RAG system's ability to retrieve contextually relevant information.
 
-### III. Beginner-Friendly Progression (NON-NEGOTIABLE)
+### III. MODULE-BASED THINKING
 
-Content MUST progress from foundational to advanced concepts:
-- Module 1 (Weeks 1-5): ROS 2 fundamentals before simulation
-- Module 2 (Weeks 6-7): Physics simulation before photorealistic rendering
-- Module 3 (Weeks 8-10): NVIDIA Isaac and advanced perception after ROS 2 mastery
-- Module 4 (Weeks 11-13): Vision-Language-Action models only after perception foundations
-- Each chapter MUST build on previous chapters' concepts
-- Prerequisites MUST be explicitly stated and enforced
+Work only within the requested module:
+- Ensure continuity with previous modules
+- Explicitly connect each module to the capstone system
+- Module boundaries MUST be respected
+- Cross-module dependencies MUST be explicitly documented
 
-**Rationale**: Physical AI combines multiple complex domains (robotics, AI, simulation). Students without proper foundation will struggle with advanced topics, leading to frustration and dropout.
+**Rationale**: Modular thinking prevents scope creep, enables parallel development, and ensures each component can be tested and validated independently.
 
-### IV. Hands-On Lab Quality
+### IV. AI-DRIVEN EDUCATION PRINCIPLES
 
-Every hands-on lab MUST be:
-- **Executable**: Step-by-step instructions that work on specified hardware/cloud instances
-- **Self-Contained**: All dependencies, setup steps, and expected outputs documented
-- **Error-Handled**: Common errors anticipated with troubleshooting guidance
-- **Validated**: Tested on minimum hardware tier before publication
-- **Commented**: Code includes explanatory comments for learning purposes
+Content MUST follow progressive complexity:
+- Basic → Advanced progression is mandatory
+- Code-first explanations (show, then explain)
+- Every concept MUST map to a real robotic/AI behavior
+- No theoretical fluff without implementation relevance
+- Practical applicability is the primary filter for content inclusion
 
-**Rationale**: Practical skills differentiate this textbook from theory-only resources. Labs that fail to execute destroy student confidence and trust.
+**Rationale**: Students learn by doing. Abstract theory without concrete implementation creates knowledge that cannot be applied, wasting learning time and reducing retention.
 
-### V. Deployment & Accessibility
+### V. DETERMINISTIC OUTPUT
 
-The platform MUST be:
-- **Always Available**: Deployed to GitHub Pages with 99%+ uptime
-- **Fast**: Page load <2 seconds, search results <1 second
-- **Responsive**: Functional on devices 375px+ width
-- **Multilingual**: English primary, Urdu (Roman) optional but properly implemented if included
-- **Searchable**: Local search across all content with accurate results
+Same input specification MUST produce same structure every time:
+- Avoid creative deviation
+- Prefer clarity over verbosity
+- Reproducibility is a quality metric
+- Randomness or stylistic variation is a defect, not a feature
 
-**Rationale**: Educational content is worthless if inaccessible. Students in different regions, on different devices, must have equal access.
+**Rationale**: Documentation is infrastructure. Like code, it must be predictable, testable, and maintainable. Non-deterministic output makes version control and collaboration difficult.
 
-### VI. RAG Chatbot Integration
+### VI. CODE QUALITY GUARANTEE
 
-The embedded chatbot MUST:
-- **Answer Accurately**: Responses grounded in textbook content (no hallucinations)
-- **Support Context**: Handle user-selected text queries for targeted help
-- **Persist State**: Use Neon Postgres + Qdrant for conversation history and embeddings
-- **Respond Quickly**: <3 second response time for typical queries
-- **Fail Gracefully**: Clear error messages when unable to answer, with fallback to search
+All code MUST be complete, runnable, and commented:
+- Python-first unless specification states otherwise
+- Use real APIs, real tools, real workflows
+- No pseudo-code unless explicitly allowed
+- All code examples MUST be tested before publication
+- Dependencies MUST be pinned with installation instructions
 
-**Rationale**: AI-native textbook means intelligent assistance. A broken or inaccurate chatbot is worse than no chatbot—it misleads students.
+**Rationale**: Students will copy-paste code. Broken or incomplete code damages their projects, wastes their time, and destroys trust in the educational material.
 
-### VII. Code Standards & Compatibility
+### VII. DOCUSAURUS COMPLIANCE
 
-All code MUST adhere to:
-- **Platform**: Ubuntu 22.04 LTS compatibility (primary target)
-- **ROS Version**: ROS 2 Humble or Iron (explicitly documented per example)
-- **Error Handling**: Production-ready with try-catch, validation, logging
-- **Documentation**: Inline comments explaining robotics/AI concepts, not just code mechanics
-- **Testing**: Critical paths tested (simulation launch, node communication, perception pipelines)
-- **Dependencies**: Pinned versions in requirements.txt / package.xml with installation instructions
+Use proper Markdown and Docusaurus conventions:
+- Use `:::note`, `:::tip`, `:::warning`, `:::danger` exactly as defined
+- No broken headings or malformed blocks
+- Frontmatter MUST be valid YAML
+- All links MUST be validated
+- Images MUST have alt text and proper paths
 
-**Rationale**: Students will copy-paste code. Broken or insecure code damages their projects and learning. Professional-grade code teaches professional habits.
+**Rationale**: Docusaurus is the deployment platform. Non-compliant Markdown breaks builds, creates rendering issues, and degrades user experience.
 
-## Content Standards
+### VIII. BILINGUAL-READY WRITING
 
-### Chapter Completeness
+Write in simple, neutral English:
+- No idioms or culture-specific references
+- Define acronyms on first use
+- Use active voice and present tense
+- Avoid colloquialisms and regional expressions
+- Structure sentences for easy translation
 
-- All 13 chapters MUST be complete before considering the textbook "done"
-- Each chapter MUST include all 12 mandatory sections from the template
-- Placeholder content (e.g., "TODO", "[Add content here]") is NOT acceptable in published chapters
-- Diagrams MUST render correctly in both light and dark modes
+**Rationale**: The textbook targets a global audience including non-native English speakers. Complex language creates barriers to learning and increases translation costs.
 
-### Hardware Guidance
+### IX. VALIDATION BEFORE COMPLETION
 
-Every chapter MUST specify:
-- **Minimum**: Cloud instances (AWS, GCP, Azure) with specific instance types and estimated costs
-- **Recommended**: RTX 4070 Ti + Jetson Orin Nano with performance expectations
-- **Premium**: RTX 4090 + Jetson Orin NX + Unitree G1 with advanced capabilities unlocked
+Before declaring any module complete, internally verify:
+- Structure matches spec
+- Learning objectives are satisfied
+- Code examples are executable
+- Exercises are measurable
+- Capstone alignment is explicit
+- All mandatory sections are present and complete
 
-### Quiz & Exercise Quality
+**Rationale**: Incomplete or invalid modules create downstream problems. Validation at completion is too late—validation must be continuous and blocking.
 
-- Quizzes MUST test understanding, not memorization (application-level questions)
-- Exercises MUST have three difficulty tiers: beginner, intermediate, advanced
-- Solutions or hints MUST be available (in separate file or behind toggle)
-- FAQs MUST address common student confusion points identified during testing
+## Workflow Enforcement
 
-## Development Workflow
+For every generation request:
+
+1. **Load Specification**: Read and parse the specification document completely
+2. **Validate Structure**: Confirm template structure matches specification requirements
+3. **Generate Content**: Produce content following the validated structure
+4. **Code Validation**: Test all code examples for executability
+5. **Cross-Reference Check**: Verify continuity with previous modules
+6. **Compliance Audit**: Confirm Docusaurus rendering and bilingual readiness
+7. **Final Review**: Execute validation checklist from Principle IX
+8. **Delivery**: Output completed module with validation report
+
+### Blocking Requirements
+
+The following are BLOCKING requirements (work cannot proceed without satisfying them):
+- Specification document must be available and parsable
+- Template structure must be validated before content generation
+- Code examples must execute successfully
+- All mandatory sections must be present
+
+### Non-Blocking Warnings
+
+The following generate warnings but do not block delivery:
+- Minor formatting inconsistencies
+- Optional sections missing (if truly optional)
+- Suggestions for improvement beyond spec requirements
+
+## Development Standards
 
 ### Content Creation Process
 
-1. **Draft**: Write chapter following template, mark unclear sections with `[NEEDS CLARIFICATION: reason]`
-2. **Technical Review**: Validate all code examples execute successfully on minimum hardware
-3. **Pedagogical Review**: Verify learning objectives are measurable and exercises align with objectives
-4. **Integration Test**: Ensure chapter integrates with previous chapters (prerequisites met)
-5. **RAG Preparation**: Verify FAQs and key concepts are structured for chatbot retrieval
-6. **Publish**: Deploy to staging, validate rendering, then merge to main
+1. **Specification Review**: Understand requirements, constraints, and success criteria
+2. **Structure Validation**: Confirm template compliance before writing
+3. **Incremental Development**: Build section by section with continuous validation
+4. **Code Testing**: Execute all code examples in target environment
+5. **Peer Review**: Cross-check against specification and previous modules
+6. **Publication**: Deploy only after full validation passes
 
 ### Code Example Standards
 
-- Use consistent naming conventions across all chapters (e.g., `robot_controller`, not `robotController` in one chapter and `robot_ctrl` in another)
-- Include expected output as comments or separate output blocks
-- Provide troubleshooting section for common errors (e.g., "If you see 'No module named rclpy'...")
-- Link to official documentation for complex APIs (ROS 2, Isaac Sim, etc.)
+- All code MUST include inline comments explaining robotics/AI concepts
+- Expected output MUST be documented
+- Common errors MUST have troubleshooting guidance
+- Dependencies MUST be explicitly listed with versions
+- Platform compatibility MUST be stated (Ubuntu 22.04 LTS primary)
 
-### Bonus Feature Implementation
+### Documentation Standards
 
-Bonus features (Better-Auth, Personalization, Urdu Translation) MUST:
-- NOT break core functionality if they fail
-- Have feature flags for easy enable/disable
-- Include their own documentation and testing
-- Be clearly marked as "optional" in user-facing UI
+- Use consistent terminology across all modules
+- Define technical terms on first use
+- Include diagrams (Mermaid) for complex concepts
+- Provide real-world examples for abstract concepts
+- Link to authoritative external resources when appropriate
 
 ## Governance
 
 ### Amendment Process
 
 1. **Proposal**: Document proposed change with rationale in GitHub issue
-2. **Impact Analysis**: Identify affected chapters, code examples, templates
-3. **Approval**: Requires explicit sign-off (project owner or designated reviewer)
-4. **Migration**: Update all affected content before merging constitution change
+2. **Impact Analysis**: Identify affected templates, modules, and workflows
+3. **Approval**: Requires explicit sign-off from project owner
+4. **Migration**: Update all affected artifacts before merging constitution change
 5. **Version Bump**: Follow semantic versioning (MAJOR.MINOR.PATCH)
+6. **Communication**: Notify all contributors of constitutional changes
 
 ### Versioning Policy
 
-- **MAJOR**: Breaking changes to chapter structure, removal of mandatory sections, incompatible tech stack changes
-- **MINOR**: New mandatory sections added, new principles added, expanded requirements
-- **PATCH**: Clarifications, typo fixes, non-semantic improvements
+- **MAJOR**: Backward-incompatible changes to principles, removal of mandatory requirements, fundamental methodology shifts
+- **MINOR**: New principles added, new mandatory sections, expanded requirements that don't break existing work
+- **PATCH**: Clarifications, typo fixes, wording improvements, non-semantic refinements
 
 ### Compliance Review
 
 - All PRs MUST verify compliance with this constitution
-- Chapter PRs MUST include checklist confirming all 12 template sections present
-- Code PRs MUST confirm Ubuntu 22.04 + ROS 2 compatibility
-- Complexity or deviations MUST be justified in PR description
+- Module PRs MUST include checklist confirming all mandatory sections present
+- Code PRs MUST confirm executability on specified platforms
+- Deviations MUST be justified in PR description with explicit approval
 
 ### Constitution Authority
 
@@ -180,5 +208,13 @@ Bonus features (Better-Auth, Personalization, Urdu Translation) MUST:
 - When in conflict, constitution principles take precedence
 - Runtime development guidance in `CLAUDE.md` MUST align with this constitution
 - Templates in `.specify/templates/` MUST reflect these principles
+- Agents MUST follow this constitution as primary directive
 
-**Version**: 1.0.0 | **Ratified**: 2026-01-11 | **Last Amended**: 2026-01-11
+### Enforcement
+
+- Automated checks SHOULD validate structural compliance where possible
+- Manual review MUST verify principle adherence for subjective requirements
+- Non-compliance is grounds for PR rejection
+- Repeated violations require process improvement, not individual blame
+
+**Version**: 2.0.0 | **Ratified**: 2026-01-11 | **Last Amended**: 2026-01-13

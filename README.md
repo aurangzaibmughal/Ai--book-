@@ -273,6 +273,32 @@ lhci autorun
 - ✅ Lighthouse score: 90+
 - ✅ Broken links: Zero
 
+## 📐 Development Methodology
+
+This project follows **Specification-Driven Development (SpecKitPlus)**, an AI-driven documentation engineering methodology that emphasizes:
+
+- **Spec is Law**: All content follows defined specifications and templates
+- **Structure First, Content Second**: Validate structure before generating content
+- **Deterministic Output**: Same input specification produces same structure
+- **Code Quality Guarantee**: All code examples are complete, runnable, and tested
+- **Module-Based Thinking**: Work within defined module boundaries with explicit dependencies
+
+### Constitution
+
+The project constitution defines core principles, workflow enforcement, and governance policies. See [`.specify/memory/constitution.md`](.specify/memory/constitution.md) for complete details.
+
+**Current Version**: 2.0.0 (Last Amended: 2026-01-13)
+
+### Development Workflow
+
+All development follows the SpecKitPlus workflow:
+1. Load and validate specification
+2. Confirm template structure compliance
+3. Generate content following validated structure
+4. Test all code examples for executability
+5. Cross-reference with previous modules
+6. Execute validation checklist before completion
+
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -283,12 +309,14 @@ lhci autorun
 
 ### Content Guidelines
 
-- Follow the chapter template structure
-- Include all 7 required sections
+- **Follow the constitution**: All content MUST comply with [`.specify/memory/constitution.md`](.specify/memory/constitution.md)
+- Follow the chapter template structure exactly
+- Include all 7 required sections (no placeholders in published content)
 - Add Mermaid diagrams for visual concepts
-- Provide working code examples
-- Write clear, concise explanations
+- Provide working code examples (Python-first, Ubuntu 22.04 LTS compatible)
+- Write clear, concise explanations (bilingual-ready English)
 - Test all code before committing
+- Validate structure before content generation
 
 ## 📝 License
 
